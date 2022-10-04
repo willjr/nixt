@@ -22,8 +22,18 @@
       projectRoot = builtins.path { path = ./.; name = "projectRoot"; };
     in
     dream2nix.lib.makeFlakeOutputs {
-      systems = [ "x86_64-linux" "x86_64-darwin" ];
+      systems = [
+        "aarch64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+        "x86_64-linux"
+      ];
       config.projectRoot = projectRoot;
       source = projectRoot;
+      settings = [
+        {
+          subsystemInfo.nodejs = 18;
+        }
+      ];
     };
 }
